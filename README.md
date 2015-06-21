@@ -1,7 +1,7 @@
 # Animator
-CSS Animation creator / sequencer written in ES6
+A CSS Animation creator / sequencer
 
-Animator is an ES6 animation utility library to help make creating / sequencing CSS transitions and animations programatically simple and easy. Use it whenever there's a need to animate in the browser, whether it be for every day needs like creating rotating banners, giving visual feedback to user interactions, or for complex animation sequences whose values are calculated dynamically. For a full API breakdown see the [WIKI](https://github.com/MikeDigitize/Animator/wiki).
+Animator is an ES6 animation utility library to help make creating / sequencing CSS transitions and animations programatically simple and easy. You can use it whenever there's a need to animate in the browser, whether it be for every day needs like creating rotating banners, giving visual feedback to user interactions, or for complex animation sequences whose style values are calculated dynamically. For a full API breakdown see the [WIKI](https://github.com/MikeDigitize/Animator/wiki).
 
 ## Features
 * CSS transition / keyframe animation creator
@@ -12,7 +12,7 @@ Animator is an ES6 animation utility library to help make creating / sequencing 
 * Easy class / style manipulation
 
 ## Polyfills
-Animator uses an edited version of Paul Miller's [ES6-shim](https://github.com/paulmillr/es6-shim/) to polyfill Map and Promise if either aren't available and likewise Mathias Bynen's [String-includes](https://github.com/mathiasbynens/String.prototype.includes) and [Array.from](https://github.com/mathiasbynens/Array.from) polyfills.
+Animator uses an edited version of Paul Miller's incredible [ES6-shim](https://github.com/paulmillr/es6-shim/) to polyfill Map and Promise if either aren't available and likewise Mathias Bynen's [String-includes](https://github.com/mathiasbynens/String.prototype.includes) and [Array.from](https://github.com/mathiasbynens/Array.from) polyfills.
 
 ## Browser support
 ```javascript
@@ -22,10 +22,10 @@ if(!Animator.isSupported()) {
 ```
 
 ## Creating sequences
-Animator has three methods to use to create a sequence - <code>animation</code> for keyframe animations, <code>transition</code> for CSS transitions and <code>combo</code> for combinations of the two that need to run simultaneously. Each of these return a <code>Promise</code> that resolves when all transitions / animations are complete, so they can be easily chained together to create sequences. Transitions and animations can be triggered either by setting styles directly on the element or adding / removing classes. See the [API guide](https://github.com/MikeDigitize/Animator/wiki/Animator-API-Guide) for more details.
+Animator has three methods to use to create a sequence - <code>animation</code> for keyframe animations, <code>transition</code> for CSS transitions and <code>combo</code> for combinations of the two that need to run simultaneously. Each of these return a <code>Promise</code> that resolves when all transitions / animations are complete, so they can be chained together to create sequences. Transitions and animations can be triggered either by setting styles directly on the element or adding / removing classes. See the [API guide](https://github.com/MikeDigitize/Animator/wiki/Animator-API-Guide) for more details.
 
 ## Example sequence
-Trigger an animation and transition sequence on several text elements. 
+Arbitrary example - trigger an animation and transition sequence on several <code>p</code> tags. In this example the CSS is defined in the stylesheet but Animator can be used to create all transition / keyframe definitions too.
 
 ```css
 /**
@@ -37,21 +37,11 @@ Trigger an animation and transition sequence on several text elements.
 .blink { animation : blink 2s 2 }
 
 @keyframes blink {
-    0% {
-    	opacity: 1
-    }
-    25% {
-    	opacity: 0
-    }
-    50% {
-    	opacity: 1
-    }
-    75% {
-    	opacity: 0
-    }
-    100% {
-    	opacity: 1
-    }
+    0% { opacity: 1 }
+    25% { opacity: 0 }
+    50% { opacity: 1 }
+    75% { opacity: 0 }
+    100% { opacity: 1 }
 }
 ``` 
 
@@ -60,7 +50,7 @@ Trigger an animation and transition sequence on several text elements.
 
 /**
   * Combine an animation and transition together with the combo method.
-  * Assign combo / transition / animation to a variable to allow chaining.
+  * Assign any of the combo / transition / animation methods to a variable to allow chaining.
   */
 
 var p = document.querySelectorAll(".text");
@@ -85,7 +75,7 @@ sequence
     .then(function(elements) {
     
     /**
-      * Any sequenced elements are passed into the next callback.
+      * Sequenced elements are passed into the next `then` callback.
       *	Return a transition / animation / combo to continue the chain.
       */
       
@@ -120,7 +110,7 @@ Animator.play();
 
 ## Defining Keyframe Animations
 
-Quickly define keyframe animations with Animator's <code>createAnimation</code> method. It has an optional style class creator to use to create an associated class to trigger an animation. Animator handles styles as an object with CSS property name / value pairs. There's a handy method called <code>createCSSRule()</code> that converts property names / values into objects for you.
+Animator's <code>createAnimation()</code> method allows you to define keyframe animations and has an optional style class creator to use to create an associated class to trigger the animation. Animator gets and sets CSS styles using objects with CSS property name / value pairs. Animator has a method called <code>createCSSRule()</code> that converts single or multiple property names / values into objects, which can be handy when property names need to be prefixed, see below.
 
 ```javascript
 /**
@@ -128,15 +118,15 @@ Quickly define keyframe animations with Animator's <code>createAnimation</code> 
   * The `createCSSRule` method returns an object of CSS property / value pairs.
   */
 
-var ninjaRules = Animator.createCSSRule(Animator.getPrefix("animation"), "ninjaAnimation 0.3s infinite");
-// e.g. returns { "animation" : "ninjaAnimation 0.3s infinite" }.
+var styleRules = Animator.createCSSRule(Animator.getPrefix("animation"), "someAnimation 0.3s infinite");
+// e.g. returns { "animation" : "someAnimation 0.3s infinite" }.
 
 /**
   * Define the keyframe animation with either syntax e.g. from, to or % based.
   */
   
 Animator.createAnimation({
-	name : "ninjaAnimation",
+	name : "someAnimation",
 	animation : { 
 		"0%, 24.9%, 100%" : { "background-position" : "0px" }, 
 		"25%, 49.9%" : { "background-position" : "-250px" },
@@ -150,8 +140,8 @@ Animator.createAnimation({
   	  */
   	  
 	animationClass : {
-		name : "ninjaAnimation",
-		rules : ninjaRules
+		name : "someAnimation",
+		rules : styleRules
 	}
 });	
 
@@ -160,11 +150,8 @@ Animator.createAnimation({
   */
 
 Animator.addClass(p, "ninjaAnimation");
-
-/**
-  * Or adding the class as part of a sequence.
-  */
   
+// or
 Animator.animation({
 	element : p,
 	addClass : {
@@ -173,16 +160,12 @@ Animator.animation({
 });
 
 /**
-  * OR, omit the `animationClass` property in the `createAnimation` options object 
-  * And set the style rules directly.
+  * Or set the style rules directly.
   */
 
 Animator.setStyles(p, ninjaRules);
 
-/**
-  * Or set the style rule as part of a sequence.
-  */
-
+// or
 Animator.animation({
 	element : p,
 	setStyles : {
@@ -193,7 +176,7 @@ Animator.animation({
 
 ## Defining Transitions
 
-Defining single or multiple CSS transitions against an element or Nodelist within Animator is made quick and painless by the <code>createTransition</code> method. See the [API guide](https://github.com/MikeDigitize/Animator-ES6/wiki/Animator-API-Guide) for an in depth description.
+Animator has a <code>createTransition</code> method to defining single or multiple CSS transitions against an element or Nodelist. See the [API guide](https://github.com/MikeDigitize/Animator/wiki/Animator-API-Guide) for an in depth description.
 
 ```javascript
 Animator.createTransition({
@@ -213,7 +196,7 @@ Animator.createTransition({
 .text { transition : transform 250ms ease-in 50ms, opacity 250ms linear 50ms }  
 ```
 ## All Methods
-For an in-depth description with examples of each Animator method visit the [WIKI](https://github.com/MikeDigitize/Animator-ES6/wiki) page.
+For an in-depth description with examples of each Animator method visit the [WIKI](https://github.com/MikeDigitize/Animator/wiki) page.
 
 ## Create A Style Class
 ```javascript
