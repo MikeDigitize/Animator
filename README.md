@@ -149,13 +149,13 @@ Animator.createAnimation({
   * Trigger the animation by adding the class created directly to the element.
   */
 
-Animator.addClass(p, "ninjaAnimation");
+Animator.addClass(p, "someAnimation");
   
 // or
 Animator.animation({
 	element : p,
 	addClass : {
-		before : "ninjaAnimation"
+		before : "someAnimation"
 	}
 });
 
@@ -163,13 +163,13 @@ Animator.animation({
   * Or set the style rules directly.
   */
 
-Animator.setStyles(p, ninjaRules);
+Animator.setStyles(p, styleRules);
 
 // or
 Animator.animation({
 	element : p,
 	setStyles : {
-		before : ninjaRules
+		before : styleRules
 	}
 });
 ```
