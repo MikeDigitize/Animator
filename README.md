@@ -21,7 +21,7 @@ if(!Animator.isSupported()) {
 ```
 
 ## Creating sequences
-Animator has three methods to use to create a sequence - <code>animation</code> for keyframe animations, <code>transition</code> for CSS transitions and <code>combo</code> for combinations of the two that need to run simultaneously. Each of these return a <code>Promise</code> that resolves when all transitions / animations are complete, so they can be chained together to create sequences. Transitions and animations can be triggered either by setting styles directly on the element or adding / removing classes. See the [API guide](https://github.com/MikeDigitize/Animator/wiki/Animator-API-Guide) for more details.
+Animator has three methods to create sequences with - <code>animation</code> for keyframe animations, <code>transition</code> for CSS transitions and <code>combo</code> for combinations of the two that need to run simultaneously. Each of these return a <code>Promise</code> that resolves when all transitions / animations are complete, so they can be chained together to create sequences. Transitions and animations can be triggered either by setting styles directly on the element or adding / removing classes. See the [API guide](https://github.com/MikeDigitize/Animator/wiki/Animator-API-Guide) for more details.
 
 ## Example sequence
 Arbitrary example - trigger an animation and transition sequence on several <code>p</code> tags. In this example the CSS is defined in the stylesheet but Animator can be used to create all transition / keyframe definitions too.
@@ -49,7 +49,7 @@ Arbitrary example - trigger an animation and transition sequence on several <cod
 
 /**
   * Combine an animation and transition together with the combo method.
-  * Assign any of the combo / transition / animation methods to a variable to allow chaining.
+  * Follow the Promise `then` pattern for chaining.
   */
 
 var p = document.querySelectorAll(".text");
@@ -109,7 +109,7 @@ Animator.play();
 
 ## Defining Keyframe Animations
 
-Animator's <code>createAnimation()</code> method allows you to define keyframe animations and has an optional style class creator to use to create an associated class to trigger the animation. Animator gets and sets CSS styles using objects with CSS property name / value pairs. Animator has a method called <code>createCSSRule()</code> that converts single or multiple property names / values into objects, which can be handy when property names need to be prefixed, see below.
+Animator's <code>createAnimation()</code> method lets you define keyframe animations. It takes an optional style class name and style rules to use to create an associated class to trigger the animation. Pass in any CSS property to Animator's <code>getPrefix()</code> method to get a supported prefixed / non-prefixed version back. Animator gets and sets CSS styles using objects with CSS property name / value pairs. It has a handy method called <code>createCSSRule()</code> that converts single or multiple property names / values into objects, useful for when property names need to be prefixed, see below. 
 
 ```javascript
 /**
@@ -117,7 +117,8 @@ Animator's <code>createAnimation()</code> method allows you to define keyframe a
   * The `createCSSRule` method returns an object of CSS property / value pairs.
   */
 
-var styleRules = Animator.createCSSRule(Animator.getPrefix("animation"), "someAnimation 0.3s infinite");
+var animation = Animator.getPrefix("animation");
+var styleRules = Animator.createCSSRule(animation, "someAnimation 0.3s infinite");
 // e.g. returns { "animation" : "someAnimation 0.3s infinite" }.
 
 /**
@@ -175,7 +176,7 @@ Animator.animation({
 
 ## Defining Transitions
 
-Animator has a <code>createTransition</code> method to defining single or multiple CSS transitions against an element or Nodelist. See the [API guide](https://github.com/MikeDigitize/Animator/wiki/Animator-API-Guide) for an in depth description.
+Animator's <code>createTransition</code> method allows you to define single or multiple CSS transitions against an element or Nodelist. See the [API guide](https://github.com/MikeDigitize/Animator/wiki/Animator-API-Guide) for an in depth description.
 
 ```javascript
 Animator.createTransition({
