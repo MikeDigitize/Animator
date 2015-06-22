@@ -109,7 +109,7 @@ Animator.play();
 
 ## Defining Keyframe Animations
 
-Animator's <code>createAnimation()</code> method lets you define keyframe animations. It takes an optional style class name and style rules to use to create an associated class to trigger the animation. Pass in any CSS property to Animator's <code>getPrefix()</code> method to get a supported prefixed / non-prefixed version back. Animator gets and sets CSS styles using objects with CSS property name / value pairs. It has a handy method called <code>createCSSRule()</code> that converts single or multiple property names / values into objects, useful for when property names need to be prefixed, see below. 
+Animator's <code>createAnimation()</code> method lets you define keyframe animations. It takes an optional style class name and style rules object to create an associated class to trigger the animation. Pass in any CSS property to Animator's <code>getPrefix()</code> method to get a supported prefixed / non-prefixed version back. Animator gets and sets CSS styles using objects with CSS property name / value pairs. It has a handy method called <code>createCSSRule()</code> that converts single or multiple property names / values into objects, useful for when property names need to be prefixed. 
 
 ```javascript
 /**
