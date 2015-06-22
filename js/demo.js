@@ -168,6 +168,9 @@
 						element : text,
 						addClass : {
 							before : ["animated", "slideInUp"]
+						},
+						removeClass : {
+							after : ["animated", "slideInUp"]
 						}
 					}),
 					Animator.transition({
