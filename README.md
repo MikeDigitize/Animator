@@ -1,6 +1,6 @@
 # Animator
 
-Animator is an ES6 animation utility library that gives you an easy to use API to make creating and sequencing CSS transitions and animations simple and easy. You can use it whenever there's a need to animate in the browser, whether it be for every day needs like creating rotating banners, giving visual feedback to user interactions, or for complex animation sequences whose style values are calculated dynamically. For a full API breakdown see the [WIKI](https://github.com/MikeDigitize/Animator/wiki).
+Animator is an ES6 animation utility library that gives you an easy to use API to make creating and sequencing CSS transitions and animations simple and easy. Use it for all manner of animation requirements in the browser, whether it be for every day needs like animating banners, giving visual feedback to user interactions, or for complex animation sequences whose style values are calculated dynamically. For a full API breakdown see the [WIKI](https://github.com/MikeDigitize/Animator/wiki).
 
 ## Features
 * CSS transition / keyframe animation creator
