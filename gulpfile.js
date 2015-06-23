@@ -4,6 +4,7 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var minifyCSS = require('gulp-minify-css');
+var wrap = require('gulp-wrap');
 var babel = require("gulp-babel");
 var babelify = require('babelify');
 var browserify = require('browserify');
@@ -61,6 +62,7 @@ gulp.task('minify', ['compileJS'], function() {
     return gulp.src([minifiedShim, compiledPath + '/temp.js'])
         .pipe(concat('animator.min.js'))
         .pipe(uglify())
+        .pipe(wrap("(function(){<%= contents %>})()"))
         .pipe(gulp.dest(buildPath + '/js'));
 });
 
