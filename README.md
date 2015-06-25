@@ -11,6 +11,7 @@ Animator is an ES6 animation utility library with an API that makes creating and
 * Easy class / style manipulation
 
 ## Browser support
+IE10+. Any browser that supports CSS transitions and animations should be fine. 
 ```javascript
 if(!Animator.isSupported()) {
     // handle fallbacks here.
