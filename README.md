@@ -10,9 +10,6 @@ Animator is an ES6 animation utility library with an API that makes creating and
 * Pause / Play sequences
 * Easy class / style manipulation
 
-## Polyfills
-Animator uses an edited version of Paul Miller's incredible [ES6-shim](https://github.com/paulmillr/es6-shim/) to polyfill Map and Promise if either aren't available and likewise Mathias Bynen's [String-includes](https://github.com/mathiasbynens/String.prototype.includes) and [Array.from](https://github.com/mathiasbynens/Array.from) polyfills.
-
 ## Browser support
 ```javascript
 if(!Animator.isSupported()) {
