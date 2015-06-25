@@ -14,8 +14,7 @@ var del = require('del');
 var buildPath = './build';
 var compiledPath = './js/temp';
 var demo = './js/demo.js';
-var shim = ['./js/array-from-shim.js', './js/map-set-promise-shim.js', './js/string-includes-shim.js'];
-var minifiedShim = compiledPath + '/es6-shim.min.js';
+var shim = './js/browser-polyfill.min.js';
 var js = './js/animator/*.js';
 var styles = './styles/*.scss';
 var html = './*.html';
@@ -34,14 +33,7 @@ gulp.task('styles', function () {
         .pipe(gulp.dest(buildPath + '/css'));
 });
 
-gulp.task('shim', function() {
-    return gulp.src(shim)
-        .pipe(concat('es6-shim.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest(compiledPath));
-});
-
-gulp.task('es6', ['shim'], function () {
+gulp.task('es6', function () {
     return gulp.src(js)
         .pipe(babel())
         .pipe(gulp.dest(compiledPath));    
@@ -59,7 +51,7 @@ gulp.task('compileJS', ['es6'], function() {
 });
 
 gulp.task('minify', ['compileJS'], function() {
-    return gulp.src([minifiedShim, compiledPath + '/temp.js'])
+    return gulp.src([shim, compiledPath + '/temp.js'])
         .pipe(concat('animator.min.js'))
         .pipe(uglify())
         .pipe(wrap("(function(){<%= contents %>})()"))

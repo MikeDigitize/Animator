@@ -23,7 +23,9 @@ body {
 	  height: 53px;
 	  background: url("../images/logo/tank.png") no-repeat top center;
 	  position: absolute;
+	  -webkit-transform: translate3d(13px,130px,0) rotate(12deg) scale(0);
 	  transform: translate3d(13px,130px,0) rotate(12deg) scale(0);
+	  -webkit-transition: -webkit-transform 0.4s ease-out;
 	  transition: transform 0.4s ease-out;
 	  z-index: 1;
 	}
