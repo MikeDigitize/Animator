@@ -1,10 +1,5 @@
 (function(){
 
-	var socket = io();
-	socket.on("userid", function(data) {
-		console.log("socket id", data);
-	});
-
 	if(!Animator.isSupported()){
 		alert("No support for you!");
 		return;
