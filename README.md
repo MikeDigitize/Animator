@@ -1,14 +1,20 @@
 # Animator
 
-Animator is an ES6 animation utility library with an API that makes creating and sequencing CSS transitions and animations simple and easy. Use it for all sorts of animation requirements in the browser; for every day needs like animating banners, UI interactions, all the way up to complex animation sequences with dynamically calculated style values and accompanying audio. For a full API breakdown see the [WIKI](https://github.com/MikeDigitize/Animator/wiki).
+Animator is an ES6 animation utility library that makes creating and sequencing CSS transitions and keyframe animations simple and easy. 
+
+Sequencing together any amount of CSS animations from script is rife with sticking points; CSS properties need to be prefixed, transitions and keyframes need to be configured first in the stylesheet, listeners must be set up for animation / transition end - a process that can easily descend into nested callback spaghetti - plus a host of other little niggles that can make the whole process frustrating and time consuming. Ramp up the complexity by attempting to create sequences with dynamically calculated CSS values and the whole thing becomes even more of a minefield, amplified further by the lack of an easy to use JavaScript interface to define keyframe animations and transitions.
+
+Animator attempts to fix this process by providing a simple and concise toolkit with features including:
 
 ## Features
 * CSS transition / keyframe animation creator
 * Promise based animation / transition sequencer
-* Style class creator
+* CSS Style class creator
 * Prefix handling
 * Pause / Play sequences
 * Easy class / style manipulation
+
+Animator can be used for all sorts of animation requirements in the browser; for every day needs like animating banners, UI interactions, all the way up to complex animation sequences with dynamically calculated style values and accompanying audio. For a full API breakdown see the [WIKI](https://github.com/MikeDigitize/Animator/wiki).
 
 ## Browser support
 IE10+. Any browser that supports CSS transitions and animations should be fine. 
@@ -19,7 +25,7 @@ if(!Animator.isSupported()) {
 ```
 
 ## Creating sequences
-Animator has three methods to create sequences with - <code>animation</code> for keyframe animations, <code>transition</code> for CSS transitions and <code>combo</code> for combinations of the two that need to run simultaneously. Each of these return a <code>Promise</code> that resolves when all transitions / animations are complete, so they can be chained together to create sequences. Transitions and animations can be triggered either by setting styles directly on the element or adding / removing classes. See the [API guide](https://github.com/MikeDigitize/Animator/wiki/Animator-API-Guide) for more details.
+Animator has three methods to create sequences - <code>animation</code> for keyframe animations, <code>transition</code> for CSS transitions and <code>combo</code> for combinations of the two that need to run simultaneously. Each of these return a <code>Promise</code> that resolves when all transitions / animations are complete, so they can be chained together to create sequences. Single transitions and animations will resolve when complete, whereas combos will only resolve when all animations and transitions defined within are complete. Both can be triggered either by setting styles directly on the element or adding / removing classes. See the [API guide](https://github.com/MikeDigitize/Animator/wiki/Animator-API-Guide) for more details.
 
 ## Example sequence
 Arbitrary example - trigger an animation and transition sequence on several <code>p</code> tags. In this example the CSS is defined in the stylesheet but Animator can be used to create all transition / keyframe definitions too.
