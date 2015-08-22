@@ -15,7 +15,7 @@ import SequenceWrapper from "./seq-wrapper";
 import Tracker from "./tracker";
 import Shim from "./browser-polyfill.min";
 
-class Animator {
+export default class Animator {
 
    /**
      * @constructor function
@@ -209,8 +209,4 @@ class Animator {
 		this.tracker.play();
 	}
 
-}
-
-export default function() {
-    return new Animator();
 }
