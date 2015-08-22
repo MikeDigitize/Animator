@@ -1,8 +1,6 @@
 (function(){
-    
-    var animator = new Animator();
 
-	if(!animator.isSupported()){
+	if(!Animator.isSupported()){
 		alert("No support for you!");
 		return;
 	}
@@ -11,7 +9,7 @@
 
         isPlaying = true;
 
-		var sequence = animator.animation({
+		var sequence = Animator.animation({
 			element : logo,
 			addClass : {
 				before : ["animated", "bounceInLeft"]
@@ -20,105 +18,105 @@
 
 		sequence
 			.then(function() {
-				return animator.transition({
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(13px,130px,0) rotate(12deg) scale(1)")
+						before : Animator.createCSSRule(transform, "translate3d(13px,130px,0) rotate(12deg) scale(1)")
 					}
 				});
 			})
 			.then(function () {
-				return animator.transition({
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(43px,-15px,0) rotate(17deg)")
+						before : Animator.createCSSRule(transform, "translate3d(43px,-15px,0) rotate(17deg)")
 					}
 				});
 			})
 			.then(function () {
-				animator.setStyles(tank, animator.createCSSRule([duration, ttf],	["0.4s", "cubic-bezier(0.175, 0.885, 0.320, 1)"]));
-				return animator.transition({
+				Animator.setStyles(tank, Animator.createCSSRule([duration, ttf],	["0.4s", "cubic-bezier(0.175, 0.885, 0.320, 1)"]));
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(43px,-15px,0) rotate(90deg)")
+						before : Animator.createCSSRule(transform, "translate3d(43px,-15px,0) rotate(90deg)")
 					}
 				});
 			})
 			.then(function () {
-				animator.setStyles(tank, animator.createCSSRule([duration, ttf], ["0.3s", "ease-out"]	));
-				return animator.transition({
+				Animator.setStyles(tank, Animator.createCSSRule([duration, ttf], ["0.3s", "ease-out"]	));
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(90px,-15px,0) rotate(90deg)")
+						before : Animator.createCSSRule(transform, "translate3d(90px,-15px,0) rotate(90deg)")
 					}
 				});
 			})
 			.then(function () {
-				animator.setStyles(tank, animator.createCSSRule([duration, ttf], ["0.4s", "cubic-bezier(0.175, 0.885, 0.320, 1)"]));
-				return animator.transition({
+				Animator.setStyles(tank, Animator.createCSSRule([duration, ttf], ["0.4s", "cubic-bezier(0.175, 0.885, 0.320, 1)"]));
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(95px,-15px,0) rotate(168deg)")
+						before : Animator.createCSSRule(transform, "translate3d(95px,-15px,0) rotate(168deg)")
 					}
 				});
 			})
 			.then(function (tank) {
-				animator.setStyles(tank, animator.createCSSRule([duration, ttf], ["0.3s", "ease-out"]	));
-				return animator.transition({
+				Animator.setStyles(tank, Animator.createCSSRule([duration, ttf], ["0.3s", "ease-out"]	));
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(120px,132px,0) rotate(168deg)")
+						before : Animator.createCSSRule(transform, "translate3d(120px,132px,0) rotate(168deg)")
 					}
 				});
 			})
 			.then(function () {
-				animator.setStyles(tank, animator.createCSSRule([duration, ttf], ["0.3s", "cubic-bezier(0.175, 0.885, 0.320, 1)"]	));
-				return animator.transition({
+				Animator.setStyles(tank, Animator.createCSSRule([duration, ttf], ["0.3s", "cubic-bezier(0.175, 0.885, 0.320, 1)"]	));
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(120px,132px,0) rotate(270deg)")
+						before : Animator.createCSSRule(transform, "translate3d(120px,132px,0) rotate(270deg)")
 					}
 				});
 			})
 			.then(function () {
-				animator.setStyles(tank, animator.createCSSRule([duration, ttf], ["0.3s", "ease-out"]	));
-				return animator.transition({
+				Animator.setStyles(tank, Animator.createCSSRule([duration, ttf], ["0.3s", "ease-out"]	));
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(13px,130px,0) rotate(270deg)")
+						before : Animator.createCSSRule(transform, "translate3d(13px,130px,0) rotate(270deg)")
 					}
 				});
 			})
 			.then(function () {
-				animator.setStyles(tank, animator.createCSSRule([duration, ttf], ["0.3s", "cubic-bezier(0.175, 0.885, 0.320, 1)"]	));
-				return animator.transition({
+				Animator.setStyles(tank, Animator.createCSSRule([duration, ttf], ["0.3s", "cubic-bezier(0.175, 0.885, 0.320, 1)"]	));
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(13px,130px,0) rotate(12deg) scale(1)")
+						before : Animator.createCSSRule(transform, "translate3d(13px,130px,0) rotate(12deg) scale(1)")
 					}
 				});
 			})
 			.then(function () {
-				animator.setStyles(tank, animator.createCSSRule([duration, ttf], ["0.3s", "ease-out"]));
-				return animator.transition({
+				Animator.setStyles(tank, Animator.createCSSRule([duration, ttf], ["0.3s", "ease-out"]));
+				return Animator.transition({
 					element : tank,
 					properties : transform,
 					setStyles : {
-						before : animator.createCSSRule(transform, "translate3d(13px,130px,0) rotate(12deg) scale(0)")
+						before : Animator.createCSSRule(transform, "translate3d(13px,130px,0) rotate(12deg) scale(0)")
 					}
 				});
 			})
 			.then(function() {
-				return animator.animation({
+				return Animator.animation({
 					element : title,
 					setStyles : {
 						before : {
@@ -134,34 +132,34 @@
 				});
 			})
 			.then(function () {
-				return animator.transition({
+				return Animator.transition({
 					element : title,
 					setStyles : {
-						before : animator.createCSSRule(transform, "scale(0.1)")
+						before : Animator.createCSSRule(transform, "scale(0.1)")
 					}
 				});
 			})
 			.then(function () {
-				animator.setStyles(title, animator.createCSSRule([duration, ttf, "text-transform"], ["0.2s", "cubic-bezier(0.175, 0.885, 0.320, 1)", "uppercase"]));
-				return animator.transition({
+				Animator.setStyles(title, Animator.createCSSRule([duration, ttf, "text-transform"], ["0.2s", "cubic-bezier(0.175, 0.885, 0.320, 1)", "uppercase"]));
+				return Animator.transition({
 					element : title,
 					setStyles : {
-						before : animator.createCSSRule(transform, "scale(5)")
+						before : Animator.createCSSRule(transform, "scale(5)")
 					}
 				});
 			})
 			.then(function () {
-				return animator.transition({
+				return Animator.transition({
 					element : title,
 					setStyles : {
-						before : animator.createCSSRule(transform, "scale(1)")
+						before : Animator.createCSSRule(transform, "scale(1)")
 					}
 				});
 			})
 			.then(function () {
-				animator.setStyles(text, { opacity : 1 });
-				return animator.combo([
-					animator.animation({
+				Animator.setStyles(text, { opacity : 1 });
+				return Animator.combo([
+					Animator.animation({
 						element : text,
 						addClass : {
 							before : ["animated", "slideInUp"]
@@ -170,7 +168,7 @@
 							after : ["animated", "slideInUp"]
 						}
 					}),
-					animator.transition({
+					Animator.transition({
 						element : text,
 						properties : "opacity",
 						setStyles : {
@@ -193,25 +191,25 @@
 	var title = holder.querySelector("h1");
 	var text = document.querySelector(".coming-soon");
 
-	var transform = animator.getPrefix("transform");
-	var duration = animator.getPrefix("transition-duration");
-	var ttf = animator.getPrefix("transition-timing-function");
+	var transform = Animator.getPrefix("transform");
+	var duration = Animator.getPrefix("transition-duration");
+	var ttf = Animator.getPrefix("transition-timing-function");
 
     var isPlaying = false;
 
     document.body.addEventListener("click", function() {
-        isPlaying ? animator.pause() : animator.play();
+        isPlaying ? Animator.pause() : Animator.play();
         isPlaying = !isPlaying;
     });
 
-	animator.setStyles(title, animator.createCSSRule([transform, "opacity"], ["scale(1)", 0]));
-	animator.createTransition({
+	Animator.setStyles(title, Animator.createCSSRule([transform, "opacity"], ["scale(1)", 0]));
+	Animator.createTransition({
 		element : title,
 		properties : transform,
 		duration : "0.5s",
 		easing : "ease-in-out"
 	});
-	animator.createTransition({
+	Animator.createTransition({
 		element : text,
 		properties : "opacity",
 		duration : "1s",
