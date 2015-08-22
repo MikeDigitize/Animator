@@ -4,17 +4,14 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var minifyCSS = require('gulp-minify-css');
-var wrap = require('gulp-wrap');
 var babel = require("gulp-babel");
-var babelify = require('babelify');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-var del = require('del');
+var streamify = require("gulp-streamify");
 
 var buildPath = './build';
 var compiledPath = './js/temp';
 var demo = './js/demo.js';
-var shim = './js/browser-polyfill.min.js';
 var js = './js/animator/*.js';
 var styles = './styles/*.scss';
 var html = './*.html';
@@ -39,23 +36,13 @@ gulp.task('es6', function () {
         .pipe(gulp.dest(compiledPath));    
 });
 
-gulp.task('compileJS', ['es6'], function() {
-    return browserify({
-        entries: compiledPath + '/animator.js',
-        debug: true
-    })
-    .transform(babelify)
-    .bundle()
-    .pipe(source('temp.js'))
-    .pipe(gulp.dest(compiledPath));
-});
-
-gulp.task('minify', ['compileJS'], function() {
-    return gulp.src([shim, compiledPath + '/temp.js'])
-        .pipe(concat('animator.min.js'))
-        .pipe(uglify())
-        .pipe(wrap("(function(){<%= contents %>})()"))
-        .pipe(gulp.dest(buildPath + '/js'));
+gulp.task('browserify', ['es6'], function() {
+    var bundleStream = browserify(compiledPath + '/animator.js', {standalone: "Animator"}).bundle();
+    bundleStream
+        .pipe(source(compiledPath + '/animator.js'))
+        .pipe(streamify(uglify()))
+        .pipe(rename('Animator.min.js'))
+        .pipe(gulp.dest(buildPath + '/js'))
 });
 
 gulp.task('demo', function() {
@@ -65,9 +52,9 @@ gulp.task('demo', function() {
 
 gulp.task('watch', function () {
     gulp.watch(styles, ['styles']);
-    gulp.watch(js, ['minify']);
+    gulp.watch(js, ['browserify']);
     gulp.watch(demo, ['demo']);
     gulp.watch(html, ['html']);
 });
 
-gulp.task('default', ['html', 'styles', 'minify', 'demo', 'watch']);
+gulp.task('default', ['html', 'styles', 'browserify', 'demo', 'watch']);

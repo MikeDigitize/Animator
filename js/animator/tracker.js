@@ -81,10 +81,10 @@ class Tracker {
 
 		let data = {}, transitionStyles = {}; 
 		let transitions = this.tracker.get("Transitions");
-		let	tp = Animator.getPrefix("transition-property"),
-			tdur = Animator.getPrefix("transition-duration"),
-			ttf = Animator.getPrefix("transition-timing-function"),
-			tdel = Animator.getPrefix("transition-delay");
+		let	tp = this.prefix.getPrefix("transition-property"),
+			tdur = this.prefix.getPrefix("transition-duration"),
+			ttf = this.prefix.getPrefix("transition-timing-function"),
+			tdel = this.prefix.getPrefix("transition-delay");
 
 		transitionStyles[tp] = this.cssUtils.getStyles(options.element, tp)[tp];
 		transitionStyles[tdur] = this.cssUtils.getStyles(options.element, tdur)[tdur];

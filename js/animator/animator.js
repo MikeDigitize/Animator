@@ -13,8 +13,9 @@ import Transition from "./transition-seq";
 import Combo from "./combo-seq";
 import SequenceWrapper from "./seq-wrapper";
 import Tracker from "./tracker";
+import Shim from "./browser-polyfill.min";
 
-class Animator { 
+export default class Animator {
 
    /**
      * @constructor function
@@ -209,5 +210,3 @@ class Animator {
 	}
 
 }
-
-window.Animator = new Animator(); 
