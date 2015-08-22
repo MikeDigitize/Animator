@@ -211,6 +211,4 @@ class Animator {
 
 }
 
-export default function() {
-    return new Animator();
-}
+export default new Animator();
